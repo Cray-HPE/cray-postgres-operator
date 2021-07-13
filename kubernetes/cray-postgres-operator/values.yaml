@@ -85,6 +85,7 @@ postgres-operator:
   # Affinity for pod assignment
   # Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
   affinity: {}
+  priorityClassName: csm-high-priority-service
 
   # Tolerations for pod assignment
   # Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
