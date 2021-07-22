@@ -12,7 +12,6 @@ chart_setup:
 		mkdir -p ${CHART_PATH}/.packaged
 
 chart_package:
-		helm dep up ${CHART_PATH}/${NAME}
 		helm package ${CHART_PATH}/${NAME} -d ${CHART_PATH}/.packaged --version ${CHART_VERSION}
 
 chart_test:
