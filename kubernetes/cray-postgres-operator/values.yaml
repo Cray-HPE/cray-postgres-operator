@@ -72,6 +72,7 @@ postgres-operator:
     pod_environment_configmap: "postgres-nodes-pod-env"
     spilo_fsgroup: 103
     update_strategy_type: "RollingUpdate"
+    enable_pod_disruption_budget: false
 
   # configure behavior of load balancers
   configLoadBalancer:
