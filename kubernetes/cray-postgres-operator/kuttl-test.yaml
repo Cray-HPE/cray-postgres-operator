@@ -1,0 +1,9 @@
+apiVersion: kuttl.dev/v1beta1
+kind: TestSuite
+commands:
+- command: kubectl create ns services
+- command: helm install --wait -f tests/kuttl/values.yaml --namespace services cray-postgres-operator .
+testDirs:
+- ./tests/kuttl
+startKIND: true
+kindNodeCache: true
