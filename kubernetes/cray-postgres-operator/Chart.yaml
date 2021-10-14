@@ -12,3 +12,16 @@ dependencies:
     Version: 1.6.0
   - name: postgres-operator
     Version: 1.5.0.1
+annotations:
+  artifacthub.io/changes: |
+    - kind: security
+      description: Refactor to use patched CSM images
+      links:
+        - name: Github Issue
+          url: https://github.com/Cray-HPE/cray-postgres-operator/issues/3
+        - name: Github PR
+          url: https://github.com/Cray-HPE/cray-postgres-operator/pull/2
+  artifacthub.io/images: |
+    - name: docker-kubectl
+      image: artifactory.algol60.net/csm-docker/stable/docker-kubectl:1.19.9
+artifacthub.io/license: MIT

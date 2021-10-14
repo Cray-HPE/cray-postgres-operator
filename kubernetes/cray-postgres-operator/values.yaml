@@ -5,8 +5,8 @@
 
 kubectl:
   image:
-    repository: dtr.dev.cray.com/loftsman/loftsman
-    tag: 0.5.1
+    repository: artifactory.algol60.net/csm-docker/stable/docker-kubectl
+    tag: 1.19.9
 
 postgres-operator-ui:
   image:
@@ -25,7 +25,7 @@ postgres-operator:
   # Deploy "postgres_exporter" as sidecar container to "postgres"
   sidecars:
     - name: "exporter"
-      image: "cache/postgres-exporter:0.8.2"
+      image: "artifactory.algol60.net/csm-docker/stable/docker.io/wrouesnel/postgres_exporter"
       ports:
         - name: http
           containerPort: 9187
@@ -54,7 +54,7 @@ postgres-operator:
 
   # general configuration parameters
   configGeneral:
-    docker_image: registry.opensource.zalan.do/acid/spilo-12:1.6-p3
+    docker_image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/spilo-12:1.6-p3
     resync_period: 5m
 
   # parameters describing Postgres users
