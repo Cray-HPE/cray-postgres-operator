@@ -4,14 +4,20 @@
 # Full available options can be seen here: https://github.com/zalando/postgres-operator/blob/c1d108a8321190559e4280b440ffe448339f656f/charts/postgres-operator/values.yaml
 
 kubectl:
-  image: artifactory.algol60.net/csm-docker/stable/docker-kubectl:1.19.9
+  image:
+    repository: artifactory.algol60.net/csm-docker/stable/docker-kubectl
+    tag: 1.19.9
 
 postgres-operator-ui:
-  image: artifactory.algol60.net/csm-docker/stable/postgres-operator-ui:1.9.1
+  image: 
+    repository: artifactory.algol60.net/csm-docker/stable/postgres-operator-ui
+    tag: 1.9.1
     pullPolicy: "IfNotPresent"
 
 postgres-operator:
-  image: artifactory.algol60.net/csm-docker/stable/postgres-operator:1.9.1
+  image:
+    repository: artifactory.algol60.net/csm-docker/stable/postgres-operator
+    tag: 1.9.1
     pullPolicy: "IfNotPresent"
 
   # Deploy "postgres_exporter" as sidecar container to "postgres"
