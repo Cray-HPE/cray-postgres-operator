@@ -9,6 +9,7 @@ kubectl:
     tag: 1.19.9
 
 postgres-operator-ui:
+  priorityClassName: csm-high-priority-service
   image: 
     repository: artifactory.algol60.net/csm-docker/stable/postgres-operator-ui
     tag: 1.9.1
