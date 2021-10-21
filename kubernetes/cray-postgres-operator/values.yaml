@@ -9,6 +9,7 @@ kubectl:
     tag: 0.5.1
 
 postgres-operator-ui:
+  priorityClassName: csm-high-priority-service
   image:
     registry: dtr.dev.cray.com
     repository: cray/postgres-operator-ui
