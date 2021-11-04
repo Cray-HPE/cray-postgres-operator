@@ -30,14 +30,3 @@ Create chart name and version as used by the chart label.
 {{- define "cray-postgres-operator.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
-
-{{/*
-Get an image prefix
-*/}}
-{{- define "cray-postgres-operator.image-prefix" -}}
-{{- if .Values.imagesHost -}}
-{{- printf "%s/" .Values.imagesHost -}}
-{{- else -}}
-{{- printf "" -}}
-{{- end -}}
-{{- end -}}
