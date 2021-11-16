@@ -13,7 +13,6 @@ jobs:
       ct-config: |
         chart-dirs:
           - kubernetes
-        validate-maintainers: false
       scan-chart-snyk-args: "--severity-threshold=high --policy-path=kubernetes/.snyk"
       scan-image-snyk-args: "--severity-threshold=high"
       test-charts: false

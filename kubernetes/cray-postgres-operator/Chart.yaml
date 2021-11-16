@@ -13,9 +13,9 @@ sources:
   - https://github.com/Cray-HPE/cray-postgres-operator
 dependencies:
   - name: postgres-operator-ui
-    Version: 1.6.0
+    version: 1.6.0
   - name: postgres-operator
-    Version: 1.5.0.1
+    version: 1.5.0.1
 maintainers:
   - name: kimjensen-hpe
 appVersion: 1.9.1 # use upstream postgres-operator version
