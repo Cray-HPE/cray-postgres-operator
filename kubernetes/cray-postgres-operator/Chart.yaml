@@ -13,7 +13,7 @@ sources:
   - https://github.com/Cray-HPE/cray-postgres-operator
 maintainers:
   - name: kimjensen-hpe
-appVersion: 1.9.1 # use upstream postgres-operator version
+appVersion: 1.9.1  # use upstream postgres-operator version
 annotations:
   artifacthub.io/images: |
     - name: docker-kubectl
