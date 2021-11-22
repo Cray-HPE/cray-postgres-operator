@@ -7,7 +7,7 @@ replicaCount: 1
 # configure ui image
 image:
   repository: artifactory.algol60.net/csm-docker/stable/postgres-operator-ui
-  tag: 1.9.1
+  tag: 2.0.0
   pullPolicy: "IfNotPresent"
 
 rbac:
