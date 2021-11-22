@@ -13,17 +13,6 @@ sources:
   - https://github.com/Cray-HPE/cray-postgres-operator
 maintainers:
   - name: kimjensen-hpe
-appVersion: 1.9.1  # use upstream postgres-operator version
+appVersion: "852f292"  # the postgres-operator repo sha
 annotations:
-  artifacthub.io/images: |
-    - name: docker-kubectl
-      image: artifactory.algol60.net/csm-docker/stable/docker-kubectl:1.19.15
-    - name: postgres_exporter
-      image: artifactory.algol60.net/csm-docker/stable/docker.io/wrouesnel/postgres_exporter:0.8.2
-    - name: postgres-operator-ui
-      image: artifactory.algol60.net/csm-docker/stable/postgres-operator-ui:1.9.1
-    - name: postgres-operator
-      image: artifactory.algol60.net/csm-docker/stable/postgres-operator:1.9.1
-    - name: spilo-12
-      image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/spilo-12:1.6-p3
   artifacthub.io/license: MIT

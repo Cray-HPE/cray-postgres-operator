@@ -21,11 +21,11 @@ sha=$(git rev-parse --short HEAD)
 cd $return_dir
 cp -r /tmp/postgres-operator/charts ./
 
-docker pull dtr.dev.cray.com/craypc/chartsutil:latest
-chartsutil="docker run -it --rm -v $(pwd)/charts:/charts dtr.dev.cray.com/craypc/chartsutil:latest"
+docker pull artifactory.algol60.net/csm-docker/stable-local/craypc/chartsutil:latest
+chartsutil="docker run -it --rm -v $(pwd)/charts:/charts artifactory.algol60.net/csm-docker/stable-local/craypc/chartsutil:latest"
 $chartsutil helm package /charts/postgres-operator -d /charts/
 $chartsutil helm package /charts/postgres-operator-ui -d /charts/
-sed -i.bak 's|^appVersion:.*$|appVersion: "'$sha'" # the postgres-operator repo sha|g' ./Chart.yaml
+sed -i.bak 's|^appVersion:.*$|appVersion: "'$sha'"  # the postgres-operator repo sha|g' ./Chart.yaml
 rm *.bak || true
 rm -rf ./charts/postgres-operator
 rm -rf ./charts/postgres-operator-ui
