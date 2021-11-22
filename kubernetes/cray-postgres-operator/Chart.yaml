@@ -11,6 +11,11 @@ keywords:
 home: https://github.com/Cray-HPE/cray-postgres-operator
 sources:
   - https://github.com/Cray-HPE/cray-postgres-operator
+dependencies:
+  - name: postgres-operator-ui
+    version: 1.6.0
+  - name: postgres-operator
+    version: 1.5.0.1
 maintainers:
   - name: kimjensen-hpe
 appVersion: "852f292"  # the postgres-operator repo sha
