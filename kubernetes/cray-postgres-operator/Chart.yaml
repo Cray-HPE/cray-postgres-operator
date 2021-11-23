@@ -2,13 +2,22 @@
 # Copyright 2020, 2021 Hewlett Packard Enterprise Development LP
 #
 apiVersion: v2
+version: 0.12.1
 name: cray-postgres-operator
-version: 0.12.0
-appVersion: "852f292" # the postgres-operator repo sha
-home: "cloud/cray-charts"
 description: Cray-specific parent chart of github.com/zalando/postgres-operator
+keywords:
+  - postgres-operator
+  - postgres-operator-ui
+home: https://github.com/Cray-HPE/cray-postgres-operator
+sources:
+  - https://github.com/Cray-HPE/cray-postgres-operator
 dependencies:
   - name: postgres-operator-ui
-    Version: 1.6.0
+    version: 1.6.0
   - name: postgres-operator
-    Version: 1.5.0.1
+    version: 1.6.0
+maintainers:
+  - name: kimjensen-hpe
+appVersion: "2.0.0"  # the postgres-operator version
+annotations:
+  artifacthub.io/license: MIT

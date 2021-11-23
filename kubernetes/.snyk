@@ -1,0 +1,15 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.19.0
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  SNYK-CC-K8S-44:
+    - '*':
+        reason: This is only general advice to grant fewer permissions.
+        expires: 2041-12-01T00:00:00.000Z
+        created: 2021-11-09T16:32:42.642Z
+  SNYK-CC-K8S-47:
+    - '*':
+        reason: This is only general advice to grant fewer permissions.
+        expires: 2041-12-01T00:00:00.000Z
+        created: 2021-11-09T16:32:45.654Z
+patch: {}

@@ -5,28 +5,26 @@
 
 kubectl:
   image:
-    repository: dtr.dev.cray.com/loftsman/loftsman
-    tag: 0.5.1
+    repository: artifactory.algol60.net/csm-docker/stable/docker-kubectl
+    tag: 1.19.15
 
 postgres-operator-ui:
   priorityClassName: csm-high-priority-service
   image:
-    registry: dtr.dev.cray.com
-    repository: cray/postgres-operator-ui
-    tag: 1.9.1
+    repository: artifactory.algol60.net/csm-docker/stable/postgres-operator-ui
+    tag: 2.0.0
     pullPolicy: "IfNotPresent"
 
 postgres-operator:
   image:
-    registry: dtr.dev.cray.com
-    repository: cray/postgres-operator
-    tag: 1.9.1
+    repository: artifactory.algol60.net/csm-docker/stable/postgres-operator
+    tag: 2.0.0
     pullPolicy: "IfNotPresent"
 
   # Deploy "postgres_exporter" as sidecar container to "postgres"
   sidecars:
     - name: "exporter"
-      image: "cache/postgres-exporter:0.8.2"
+      image: "artifactory.algol60.net/csm-docker/stable/docker.io/wrouesnel/postgres_exporter:0.8.2"
       ports:
         - name: http
           containerPort: 9187
@@ -55,7 +53,7 @@ postgres-operator:
 
   # general configuration parameters
   configGeneral:
-    docker_image: registry.opensource.zalan.do/acid/spilo-12:1.6-p3
+    docker_image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/spilo-12:1.6-p3
     resync_period: 5m
 
   # parameters describing Postgres users
