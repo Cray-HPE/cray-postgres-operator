@@ -18,6 +18,6 @@ dependencies:
     version: 1.6.0
 maintainers:
   - name: kimjensen-hpe
-appVersion: "852f292"  # the postgres-operator repo sha
+appVersion: "2.0.0"  # the postgres-operator version
 annotations:
   artifacthub.io/license: MIT
