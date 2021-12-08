@@ -14,7 +14,7 @@ jobs:
         chart-dirs:
           - kubernetes
       scan-chart-snyk-args: "--severity-threshold=high --policy-path=kubernetes/.snyk"
-      scan-image-snyk-args: "--severity-threshold=high"
+      scan-image-snyk-args: "--severity-threshold=high --policy-path=kubernetes/.snyk"
       test-charts: false
     secrets:
       snyk-token: ${{ secrets.SNYK_TOKEN }}
