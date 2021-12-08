@@ -7,9 +7,4 @@ ignore:
         reason: This is only general advice to grant fewer permissions.
         expires: 2041-12-01T00:00:00.000Z
         created: 2021-11-09T16:32:45.654Z
-  SNYK-ALPINE312-BUSYBOX-1089799:
-    - '*':
-        reason: Requires Analysis
-        expires: 2022-02-01T00:00:00.000Z
-        created: 2021-11-09T16:32:45.654Z
 patch: {}
