@@ -8,17 +8,10 @@ kubectl:
     repository: artifactory.algol60.net/csm-docker/stable/docker-kubectl
     tag: 1.19.15
 
-postgres-operator-ui:
-  priorityClassName: csm-high-priority-service
-  image:
-    repository: artifactory.algol60.net/csm-docker/stable/postgres-operator-ui
-    tag: 2.0.0
-    pullPolicy: "IfNotPresent"
-
 postgres-operator:
   image:
     repository: artifactory.algol60.net/csm-docker/stable/postgres-operator
-    tag: 2.0.0
+    tag: 2.0.0  # Update the appVersion in Chart.yaml
     pullPolicy: "IfNotPresent"
 
   # Deploy "postgres_exporter" as sidecar container to "postgres"
