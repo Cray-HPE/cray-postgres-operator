@@ -22,7 +22,7 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 #
 apiVersion: v2
-version: 0.13.0
+version: 0.14.0
 name: cray-postgres-operator
 description: Cray-specific parent chart of github.com/zalando/postgres-operator
 keywords:
@@ -35,6 +35,13 @@ dependencies:
     version: 1.6.0
 maintainers:
   - name: kimjensen-hpe
-appVersion: "2.2.0"  # the postgres-operator image version
+appVersion: "2.3.0"  # the postgres-operator image version
 annotations:
   artifacthub.io/license: MIT
+  artifacthub.io/images: |
+    - name: postgres-operator
+      image: artifactory.algol60.net/csm-docker/stable/postgres-operator:2.3.0
+    - name: postgres-exporter
+      image: artifactory.algol60.net/csm-docker/stable/docker.io/wrouesnel/postgres_exporter:0.8.2
+    - name: spilo-12
+      image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/spilo-12:1.6-p3
