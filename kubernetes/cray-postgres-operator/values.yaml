@@ -31,7 +31,7 @@ kubectl:
 postgres-operator:
   image:
     repository: artifactory.algol60.net/csm-docker/stable/postgres-operator
-    tag: 2.3.0  # Update the appVersion in Chart.yaml
+    tag: 3.0.0  # Update the appVersion in Chart.yaml
     pullPolicy: "IfNotPresent"
 
   # Deploy "postgres_exporter" as sidecar container to "postgres"
