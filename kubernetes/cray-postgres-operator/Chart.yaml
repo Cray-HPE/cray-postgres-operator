@@ -22,17 +22,18 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 #
 apiVersion: v2
-version: 1.0.0
+version: 1.8.2
 name: cray-postgres-operator
 description: Cray-specific parent chart of github.com/zalando/postgres-operator
 keywords:
   - postgres-operator
 home: https://github.com/Cray-HPE/cray-postgres-operator
 sources:
-  - https://github.com/Cray-HPE/cray-postgres-operator
+  - https://github.com/zalando/postgres-operator
 dependencies:
   - name: postgres-operator
-    version: 1.6.0
+    version: 1.8.2
+    repository: https://opensource.zalando.com/postgres-operator/charts/postgres-operator
 maintainers:
   - name: kimjensen-hpe
 appVersion: "3.0.0"  # the postgres-operator image version

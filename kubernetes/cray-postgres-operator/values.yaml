@@ -30,8 +30,8 @@ kubectl:
 
 postgres-operator:
   image:
-    repository: artifactory.algol60.net/csm-docker/stable/postgres-operator
-    tag: 3.0.0  # Update the appVersion in Chart.yaml
+    repository: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/postgres-operator
+    tag: v1.8.2
     pullPolicy: "IfNotPresent"
 
   # Deploy "postgres_exporter" as sidecar container to "postgres"
@@ -66,7 +66,7 @@ postgres-operator:
 
   # general configuration parameters
   configGeneral:
-    docker_image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/spilo-12:1.6-p3
+    docker_image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/spilo-14:2.1-p6
     resync_period: 5m
 
   # parameters describing Postgres users
@@ -107,3 +107,8 @@ postgres-operator:
   # Node labels for pod assignment
   # Ref: https://kubernetes.io/docs/user-guide/node-selection/
   nodeSelector: {}
+
+  configLogicalBackup:
+    logical_backup_docker_image: "artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/logical-backup:v1.8.0"
+  configConnectionPooler:
+    connection_pooler_image: "artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/pgbouncer:master-22"
