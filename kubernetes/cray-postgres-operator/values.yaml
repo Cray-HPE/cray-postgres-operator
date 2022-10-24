@@ -69,6 +69,9 @@ postgres-operator:
     docker_image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/spilo-14:2.1-p6
     resync_period: 5m
 
+  configMajorVersionUpgrade:
+    major_version_upgrade_mode: "on"
+
   # parameters describing Postgres users
   configUsers:
     super_username: postgres
@@ -77,13 +80,11 @@ postgres-operator:
     watched_namespace: "*"
     secret_name_template: '{username}.{cluster}.credentials'
     spilo_privileged: false
-    spilo_chmod_lifecycle: true
     pod_management_policy: "ordered_ready"
     enable_pod_antiaffinity: true
     pod_antiaffinity_topology_key: "kubernetes.io/hostname"
     pod_environment_configmap: "postgres-nodes-pod-env"
     spilo_fsgroup: 103
-    update_strategy_type: "RollingUpdate"
     enable_pod_disruption_budget: false
 
   # configure behavior of load balancers
