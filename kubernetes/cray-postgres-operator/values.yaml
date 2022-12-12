@@ -66,8 +66,9 @@ postgres-operator:
 
   # general configuration parameters
   configGeneral:
-    docker_image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/spilo-14:2.1-p6
+    docker_image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/spilo-14:2.1-p7
     resync_period: 5m
+    enable_pgversion_env_var: false  # needed for rollback to succeed
 
   configMajorVersionUpgrade:
     major_version_upgrade_mode: "on"

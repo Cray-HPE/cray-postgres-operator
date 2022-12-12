@@ -44,5 +44,5 @@ annotations:
       image: artifactory.algol60.net/csm-docker/stable/postgres-operator:3.0.0
     - name: postgres-exporter
       image: artifactory.algol60.net/csm-docker/stable/docker.io/wrouesnel/postgres_exporter:0.8.2
-    - name: spilo-12
-      image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/spilo-12:1.6-p3
+    - name: spilo-14
+      image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/spilo-14:2.1-p7
