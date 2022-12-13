@@ -111,6 +111,6 @@ postgres-operator:
   nodeSelector: {}
 
   configLogicalBackup:
-    logical_backup_docker_image: "artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/logical-backup:v1.8.0"
+    logical_backup_docker_image: "artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/logical-backup:v1.8.2"
   configConnectionPooler:
     connection_pooler_image: "artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/pgbouncer:master-22"
