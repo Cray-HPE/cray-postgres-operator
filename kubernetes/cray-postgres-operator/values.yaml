@@ -121,6 +121,6 @@ postgres-operator:
     logical_backup_s3_retention_time: "2 days"
     logical_backup_s3_region: ""
     logical_backup_s3_sse: ""
-    logical_backup_schedule: "30 00 * * *"
+    logical_backup_schedule: "0 12 * * *"  # everyday at noon
   configConnectionPooler:
     connection_pooler_image: "artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/pgbouncer:master-22"
