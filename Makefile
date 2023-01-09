@@ -33,10 +33,14 @@ chart: chart_setup chart_package chart_test
 
 chart_setup:
 		mkdir -p ${CHART_PATH}/.packaged
+		helm repo add postgres-operator https://opensource.zalando.com/postgres-operator/charts/postgres-operator
+		helm repo update
 
 chart_package:
 		helm package ${CHART_PATH}/${NAME} -d ${CHART_PATH}/.packaged --version ${CHART_VERSION}
 
 chart_test:
+		helm repo add postgres-operator https://opensource.zalando.com/postgres-operator/charts/postgres-operator
+		helm repo update
 		helm lint "${CHART_PATH}/${NAME}"
 		docker run --rm -v ${PWD}/${CHART_PATH}:/apps ${HELM_UNITTEST_IMAGE} -3 ${NAME}
