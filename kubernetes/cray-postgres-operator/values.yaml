@@ -30,7 +30,8 @@ kubectl:
 
 postgres-operator:
   image:
-    repository: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/postgres-operator
+    registry: artifactory.algol60.net
+    repository: csm-docker/stable/registry.opensource.zalan.do/acid/postgres-operator
     tag: v1.8.2
     pullPolicy: "IfNotPresent"
 
