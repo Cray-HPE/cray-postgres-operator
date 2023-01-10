@@ -36,13 +36,17 @@ dependencies:
     repository: https://opensource.zalando.com/postgres-operator/charts/postgres-operator
 maintainers:
   - name: kimjensen-hpe
-appVersion: "3.0.0"  # the postgres-operator image version
+appVersion: "1.8.2"  # the postgres-operator dependent chart version
 annotations:
   artifacthub.io/license: MIT
   artifacthub.io/images: |
     - name: postgres-operator
-      image: artifactory.algol60.net/csm-docker/stable/postgres-operator:3.0.0
+      image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/postgres-operator:v1.8.2
     - name: postgres-exporter
       image: artifactory.algol60.net/csm-docker/stable/docker.io/wrouesnel/postgres_exporter:0.8.2
     - name: spilo-14
       image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/spilo-14:2.1-p7
+    - name: logical-backup
+      image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/logical-backup:v1.8.2
+    - name: pgbouncer
+      image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/pgbouncer:master-22
