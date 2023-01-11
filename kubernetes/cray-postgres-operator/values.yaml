@@ -30,34 +30,10 @@ kubectl:
 
 postgres-operator:
   image:
-    repository: artifactory.algol60.net/csm-docker/stable/postgres-operator
-    tag: 3.0.0  # Update the appVersion in Chart.yaml
+    registry: artifactory.algol60.net
+    repository: csm-docker/stable/registry.opensource.zalan.do/acid/postgres-operator
+    tag: v1.8.2
     pullPolicy: "IfNotPresent"
-
-  # Deploy "postgres_exporter" as sidecar container to "postgres"
-  sidecars:
-    - name: "exporter"
-      image: "artifactory.algol60.net/csm-docker/stable/docker.io/wrouesnel/postgres_exporter:0.8.2"
-      ports:
-        - name: http
-          containerPort: 9187
-          protocol: TCP
-      resources:
-        limits:
-        cpu: 500m
-        memory: 256M
-        requests:
-          cpu: 100m
-          memory: 200M
-      env:
-        - name: "DATA_SOURCE_URI"
-          value: "localhost:5432/postgres?sslmode=require"
-        - name: "DATA_SOURCE_USER"
-          value: $(POSTGRES_USER)
-        - name: "DATA_SOURCE_PASS"
-          value: $(POSTGRES_PASSWORD)
-        - name: "PG_EXPORTER_AUTO_DISCOVER_DATABASES"
-          value: "true"
 
   podAnnotations:
     sidecar.istio.io/inject: "true"
@@ -66,8 +42,37 @@ postgres-operator:
 
   # general configuration parameters
   configGeneral:
-    docker_image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/spilo-12:1.6-p3
+    docker_image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/spilo-14:2.1-p7
     resync_period: 5m
+    enable_pgversion_env_var: false  # needed for rollback to succeed
+
+  # Deploy "postgres_exporter" as sidecar container to "postgres"
+    sidecars:
+      - name: "exporter"
+        image: "artifactory.algol60.net/csm-docker/stable/docker.io/wrouesnel/postgres_exporter:0.8.2"
+        ports:
+          - name: http
+            containerPort: 9187
+            protocol: TCP
+        resources:
+          limits:
+          cpu: 500m
+          memory: 256M
+          requests:
+            cpu: 100m
+            memory: 200M
+        env:
+          - name: "DATA_SOURCE_URI"
+            value: "localhost:5432/postgres?sslmode=require"
+          - name: "DATA_SOURCE_USER"
+            value: $(POSTGRES_USER)
+          - name: "DATA_SOURCE_PASS"
+            value: $(POSTGRES_PASSWORD)
+          - name: "PG_EXPORTER_AUTO_DISCOVER_DATABASES"
+            value: "true"
+
+  configMajorVersionUpgrade:
+    major_version_upgrade_mode: "on"
 
   # parameters describing Postgres users
   configUsers:
@@ -77,13 +82,11 @@ postgres-operator:
     watched_namespace: "*"
     secret_name_template: '{username}.{cluster}.credentials'
     spilo_privileged: false
-    spilo_chmod_lifecycle: true
     pod_management_policy: "ordered_ready"
     enable_pod_antiaffinity: true
     pod_antiaffinity_topology_key: "kubernetes.io/hostname"
     pod_environment_configmap: "postgres-nodes-pod-env"
     spilo_fsgroup: 103
-    update_strategy_type: "RollingUpdate"
     enable_pod_disruption_budget: false
 
   # configure behavior of load balancers
@@ -107,3 +110,18 @@ postgres-operator:
   # Node labels for pod assignment
   # Ref: https://kubernetes.io/docs/user-guide/node-selection/
   nodeSelector: {}
+
+  configLogicalBackup:
+    logical_backup_docker_image: "artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/logical-backup:v1.8.2"
+    logical_backup_job_prefix: logical-backup-
+    logical_backup_provider: s3
+    logical_backup_s3_bucket: postgres-backup
+    logical_backup_s3_access_key_id: ""
+    logical_backup_s3_secret_access_key: ""
+    logical_backup_s3_endpoint: "http://rgw-vip.nmn"
+    logical_backup_s3_retention_time: "2 days"
+    logical_backup_s3_region: ""
+    logical_backup_s3_sse: ""
+    logical_backup_schedule: "0 12 * * *"  # everyday at noon
+  configConnectionPooler:
+    connection_pooler_image: "artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/pgbouncer:master-22"
