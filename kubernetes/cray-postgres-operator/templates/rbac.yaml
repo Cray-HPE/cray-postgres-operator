@@ -47,7 +47,7 @@ metadata:
   name: {{ template "cray-postgres-operator.fullname" . }}-jobs-role
 rules:
 - apiGroups: ["", "batch", "apiextensions.k8s.io", "acid.zalan.do"]
-  resources: ["customresourcedefinitions", "cronjobs", "secrets", "operatorconfigurations"]
+  resources: ["customresourcedefinitions", "cronjobs", "secrets", "operatorconfigurations", "pods"]
   verbs: ["get", "list", "delete", "patch"]
 ---
 kind: ClusterRoleBinding
