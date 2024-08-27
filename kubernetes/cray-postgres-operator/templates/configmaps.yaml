@@ -29,3 +29,4 @@ metadata:
 data:
   DEVELOP: "1"
   SPILO_PROVIDER: "local"
+  PATRONI_KUBERNETES_BYPASS_API_SERVICE: "true"
