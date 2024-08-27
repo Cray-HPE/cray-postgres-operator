@@ -22,7 +22,7 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 #
 apiVersion: v2
-version: 1.8.5
+version: 1.8.6
 name: cray-postgres-operator
 description: Cray-specific parent chart of github.com/zalando/postgres-operator
 keywords:
