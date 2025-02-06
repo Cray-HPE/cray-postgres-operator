@@ -22,7 +22,7 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 #
 apiVersion: v2
-version: 1.8.5
+version: 1.10.1
 name: cray-postgres-operator
 description: Cray-specific parent chart of github.com/zalando/postgres-operator
 keywords:
@@ -32,21 +32,21 @@ sources:
   - https://github.com/zalando/postgres-operator
 dependencies:
   - name: postgres-operator
-    version: 1.8.2
+    version: 1.10.1
     repository: https://opensource.zalando.com/postgres-operator/charts/postgres-operator
 maintainers:
   - name: kimjensen-hpe
-appVersion: "1.8.2"  # the postgres-operator dependent chart version
+appVersion: "1.10.1"  # the postgres-operator dependent chart version
 annotations:
   artifacthub.io/license: MIT
   artifacthub.io/images: |
     - name: postgres-operator
-      image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/postgres-operator:v1.8.2
+      image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/postgres-operator:v1.10.1
     - name: postgres-exporter
       image: artifactory.algol60.net/csm-docker/stable/docker.io/wrouesnel/postgres_exporter:0.8.2
     - name: spilo-14
-      image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/spilo-14:2.1-p7
+      image: artifactory.algol60.net/csm-docker/stable/ghcr.io/zalando/spilo-15:3.0-p1
     - name: logical-backup
-      image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/logical-backup:v1.8.2
+      image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/logical-backup:v1.10.1
     - name: pgbouncer
-      image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/pgbouncer:master-22
+      image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/pgbouncer:master-27

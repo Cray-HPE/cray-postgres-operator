@@ -1,7 +1,7 @@
 {{/*
 MIT License
 
-(C) Copyright 2022 Hewlett Packard Enterprise Development LP
+(C) Copyright 2022, 2025 Hewlett Packard Enterprise Development LP
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
@@ -29,3 +29,4 @@ metadata:
 data:
   DEVELOP: "1"
   SPILO_PROVIDER: "local"
+  PATRONI_KUBERNETES_BYPASS_API_SERVICE: "true"
