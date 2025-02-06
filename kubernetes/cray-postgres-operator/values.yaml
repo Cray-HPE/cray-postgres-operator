@@ -26,13 +26,13 @@
 kubectl:
   image:
     repository: artifactory.algol60.net/csm-docker/stable/docker-kubectl
-    tag: 1.19.15
+    tag: 1.24.17
 
 postgres-operator:
   image:
     registry: artifactory.algol60.net
     repository: csm-docker/stable/registry.opensource.zalan.do/acid/postgres-operator
-    tag: v1.8.2
+    tag: v1.10.1
     pullPolicy: "IfNotPresent"
 
   podAnnotations:
@@ -42,7 +42,7 @@ postgres-operator:
 
   # general configuration parameters
   configGeneral:
-    docker_image: artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/spilo-14:2.1-p7
+    docker_image: artifactory.algol60.net/csm-docker/stable/ghcr.io/zalando/spilo-15:3.0-p1
     resync_period: 5m
     enable_pgversion_env_var: false  # needed for rollback to succeed
 
@@ -112,7 +112,7 @@ postgres-operator:
   nodeSelector: {}
 
   configLogicalBackup:
-    logical_backup_docker_image: "artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/logical-backup:v1.8.2"
+    logical_backup_docker_image: "artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/logical-backup:v1.10.1"
     logical_backup_job_prefix: logical-backup-
     logical_backup_provider: s3
     logical_backup_s3_bucket: postgres-backup
@@ -124,4 +124,4 @@ postgres-operator:
     logical_backup_s3_sse: ""
     logical_backup_schedule: "0 12 * * *"  # everyday at noon
   configConnectionPooler:
-    connection_pooler_image: "artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/pgbouncer:master-22"
+    connection_pooler_image: "artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/pgbouncer:master-27"
