@@ -42,7 +42,7 @@ postgres-operator:
 
   # general configuration parameters
   configGeneral:
-    docker_image: artifactory.algol60.net/csm-docker/stable/ghcr.io/zalando/spilo-15:3.0-p1
+    docker_image: artifactory.algol60.net/csm-docker/stable/ghcr.io/zalando/spilo-15-test2:3.0-p1
     resync_period: 5m
     enable_pgversion_env_var: false  # needed for rollback to succeed
 
