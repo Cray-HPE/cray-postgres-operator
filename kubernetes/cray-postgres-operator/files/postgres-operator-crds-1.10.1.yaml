@@ -698,7 +698,7 @@ spec:
                 properties:
                   enable_patroni_failsafe_mode:
                     type: boolean
-                    default: false
+                    default: true
           status:
             type: object
             additionalProperties:
