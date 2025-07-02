@@ -128,4 +128,4 @@ postgres-operator:
 
   # enable Patroni DCS failsafe_mode feature
   configPatroni:
-    enable_patroni_failsafe_mode: false
+    enable_patroni_failsafe_mode: true
