@@ -125,3 +125,7 @@ postgres-operator:
     logical_backup_schedule: "0 12 * * *"  # everyday at noon
   configConnectionPooler:
     connection_pooler_image: "artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/pgbouncer:master-27"
+
+  # enable Patroni DCS failsafe_mode feature
+  configPatroni:
+    enable_patroni_failsafe_mode: true
