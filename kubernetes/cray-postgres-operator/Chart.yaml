@@ -35,7 +35,7 @@ dependencies:
     version: 1.14.0
     repository: https://opensource.zalando.com/postgres-operator/charts/postgres-operator
 maintainers:
-  - name: kimjensen-hpe
+  - name: keshav-06-hpe
 appVersion: "1.14.0"  # the postgres-operator dependent chart version
 annotations:
   artifacthub.io/license: MIT
