@@ -32,7 +32,7 @@ postgres-operator:
   image:
     registry: artifactory.algol60.net
     repository: csm-docker/stable/registry.opensource.zalan.do/acid/postgres-operator
-    tag: v1.10.1
+    tag: v1.14.0
     pullPolicy: "IfNotPresent"
 
   podAnnotations:
@@ -112,7 +112,7 @@ postgres-operator:
   nodeSelector: {}
 
   configLogicalBackup:
-    logical_backup_docker_image: "artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/logical-backup:v1.10.1"
+    logical_backup_docker_image: "artifactory.algol60.net/csm-docker/stable/registry.opensource.zalan.do/acid/logical-backup:v1.14.0"
     logical_backup_job_prefix: logical-backup-
     logical_backup_provider: s3
     logical_backup_s3_bucket: postgres-backup
