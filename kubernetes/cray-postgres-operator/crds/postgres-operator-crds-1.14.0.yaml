@@ -231,7 +231,16 @@ spec:
                   enable_cross_namespace_secret:
                     type: boolean
                     default: false
+                  enable_finalizers:
+                    type: boolean
+                    default: false
                   enable_init_containers:
+                    type: boolean
+                    default: true
+                  enable_owner_references:
+                    type: boolean
+                    default: false
+                  enable_persistent_volume_claim_deletion:
                     type: boolean
                     default: true
                   enable_pod_antiaffinity:
@@ -243,6 +252,9 @@ spec:
                   enable_readiness_probe:
                     type: boolean
                     default: false
+                  enable_secrets_deletion:
+                    type: boolean
+                    default: true
                   enable_sidecars:
                     type: boolean
                     default: true
@@ -301,9 +313,25 @@ spec:
                   oauth_token_secret_name:
                     type: string
                     default: "postgresql-operator"
+                  pdb_master_label_selector:
+                    type: boolean
+                    default: true
                   pdb_name_format:
                     type: string
                     default: "postgres-{cluster}-pdb"
+                  persistent_volume_claim_retention_policy:
+                    type: object
+                    properties:
+                      when_deleted:
+                        type: string
+                        enum:
+                          - "delete"
+                          - "retain"
+                      when_scaled:
+                        type: string
+                        enum:
+                          - "delete"
+                          - "retain"
                   pod_antiaffinity_preferred_during_scheduling:
                     type: boolean
                     default: false
@@ -538,6 +566,8 @@ spec:
                     type: string
                   logical_backup_s3_bucket:
                     type: string
+                  logical_backup_s3_bucket_prefix:
+                    type: string
                   logical_backup_s3_endpoint:
                     type: string
                   logical_backup_s3_region:
@@ -552,6 +582,8 @@ spec:
                     type: string
                     pattern: '^(\d+|\*)(/\d+)?(\s+(\d+|\*)(/\d+)?){4}$'
                     default: "30 00 * * *"
+                  logical_backup_cronjob_environment_secret:
+                    type: string
               debug:
                 type: object
                 properties:
