@@ -88,6 +88,8 @@ postgres-operator:
     pod_environment_configmap: "postgres-nodes-pod-env"
     spilo_fsgroup: 103
     enable_pod_disruption_budget: false
+    # Enable init containers to fix PVC permissions before postgres starts
+    enable_init_containers: true
 
   # configure behavior of load balancers
   configLoadBalancer:

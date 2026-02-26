@@ -1,0 +1,145 @@
+#
+# Example PostgreSQL Custom Resource with Init Container for PVC Permissions Fix
+#
+# This template demonstrates how to add the init container to fix RBD PVC permissions
+# that cause postgres pods to randomly fail.
+#
+# Apply this configuration to your PostgreSQL custom resources to ensure permissions
+# are correctly set before postgres starts.
+#
+
+apiVersion: acid.zalan.do/v1
+kind: postgresql
+metadata:
+  name: example-postgres
+  namespace: services
+  labels:
+    application: spilo
+    team: platform
+spec:
+  # Number of postgres instances in the cluster
+  numberOfInstances: 3
+  
+  # Postgres version
+  postgresql:
+    version: "15"
+  
+  # Team/owner of the database
+  teamId: "platform"
+  
+  # Volume configuration
+  volume:
+    size: 20Gi
+    storageClass: k8s-block-replicated  # RBD storage class
+  
+  # Resources
+  resources:
+    requests:
+      cpu: 100m
+      memory: 200Mi
+    limits:
+      cpu: 500m
+      memory: 500Mi
+  
+  # Pod Priority
+  podPriorityClassName: csm-high-priority-service
+  
+  # Security Context - fsGroup for the postgres group
+  spiloFSGroup: 103
+  
+  # ============================================================================
+  # INIT CONTAINER - FIX PVC PERMISSIONS
+  # ============================================================================
+  # This init container runs before postgres starts and ensures that the
+  # /home/postgres/pgdata directory has the correct ownership and permissions.
+  # This fixes the issue where RBD PVCs randomly reset permissions.
+  # ============================================================================
+  initContainers:
+    - name: fix-pgdata-permissions
+      # Using kubectl image which has shell and necessary utilities
+      image: artifactory.algol60.net/csm-docker/stable/docker-kubectl:1.32.2
+      command:
+        - sh
+        - -c
+        - |
+          echo "========================================"
+          echo "Fixing permissions on /home/postgres/pgdata"
+          echo "========================================"
+          
+          # Ensure the directory exists
+          mkdir -p /home/postgres/pgdata
+          
+          # Show current permissions (for debugging)
+          echo "Current permissions:"
+          ls -la /home/postgres/ || true
+          
+          # Set ownership to postgres user (101:103)
+          # UID 101 = postgres user in Spilo container
+          # GID 103 = postgres group in Spilo container
+          chown -R 101:103 /home/postgres/pgdata
+          
+          # Set proper permissions (owner rwx, no group or other access)
+          chmod -R 0700 /home/postgres/pgdata
+          
+          # Verify the changes
+          echo "Updated permissions:"
+          ls -la /home/postgres/
+          
+          echo "========================================"
+          echo "Permissions fixed successfully"
+          echo "========================================"
+      
+      # Mount the same pgdata volume that postgres will use
+      volumeMounts:
+        - name: pgdata
+          mountPath: /home/postgres/pgdata
+      
+      # Security context - must run as root to change ownership
+      securityContext:
+        runAsUser: 0
+        runAsNonRoot: false
+        # Allow privilege escalation to change file ownership
+        allowPrivilegeEscalation: true
+  
+  # ============================================================================
+  # END OF INIT CONTAINER CONFIGURATION
+  # ============================================================================
+  
+  # Additional postgres configuration
+  patroni:
+    pg_hba:
+      - local all all trust
+      - host all all 0.0.0.0/0 md5
+      - hostssl all all 0.0.0.0/0 md5
+  
+  # Users to create
+  users:
+    example_user: []
+  
+  # Databases to create
+  databases:
+    example_db: example_user
+
+---
+# Example of applying this to an existing cluster like cray-smd-postgres
+# kubectl patch postgresql cray-smd-postgres -n services --type=merge -p '
+# spec:
+#   initContainers:
+#     - name: fix-pgdata-permissions
+#       image: artifactory.algol60.net/csm-docker/stable/docker-kubectl:1.32.2
+#       command:
+#         - sh
+#         - -c
+#         - |
+#           echo "Fixing permissions on /home/postgres/pgdata"
+#           mkdir -p /home/postgres/pgdata
+#           chown -R 101:103 /home/postgres/pgdata
+#           chmod -R 0700 /home/postgres/pgdata
+#           echo "Permissions fixed successfully"
+#       volumeMounts:
+#         - name: pgdata
+#           mountPath: /home/postgres/pgdata
+#       securityContext:
+#         runAsUser: 0
+#         runAsNonRoot: false
+# '
